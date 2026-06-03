@@ -35,10 +35,10 @@ const steps: StepProps[] = [
     title: "ターミナルを開く",
     description: "キーボードショートカットで一発で開けます。Mac・Windows どちらも同じキーです。または画面下の「Terminal」タブをクリックしても開けます。",
     shortcuts: [
-      { os: "Mac", keys: ["Ctrl", "`"] },
+      { os: "Mac", keys: ["Shift", "Ctrl", "^"] },
       { os: "Windows", keys: ["Ctrl", "`"] },
     ],
-    tip: "「 ` 」はバッククォートというキーです。キーボードの左上、Tabキーの上にある「 ~ 」と同じキーです（Shiftなしで押す）。ショートカットで開かない場合は「View」→「Terminal」メニューからも開けます。",
+    tip: "Windowsの「 ` 」はバッククォートというキーで、キーボード左上のTabキーの上にあります。ショートカットで開かない場合は「View」→「Terminal」メニューからも開けます。",
     imagelabel: "Antigravityでターミナルが開いているスクショ",
     filename: "step2.png",
   },
