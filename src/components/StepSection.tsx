@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import ImagePlaceholder from "./ImagePlaceholder";
 
 interface StepProps {
@@ -55,11 +58,37 @@ const steps: StepProps[] = [
   },
 ];
 
+function CopyButton({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    await navigator.clipboard.writeText(text.replace(/^>\s*/, ""));
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <button
+      onClick={handleCopy}
+      className={`text-xs px-2 py-1 rounded transition-all font-mono ${
+        copied
+          ? "bg-green-500 text-white"
+          : "bg-gray-700 text-gray-300 hover:bg-gray-600"
+      }`}
+    >
+      {copied ? "✅ コピーしました" : "コピー"}
+    </button>
+  );
+}
+
 function CodeBlock({ code }: { code: string }) {
   return (
-    <div className="bg-gray-900 rounded-lg px-4 py-3 font-mono text-green-400 text-sm flex items-center gap-2">
-      <span className="text-gray-500 select-none">$</span>
-      <span>{code.startsWith(">") ? code : code}</span>
+    <div className="bg-gray-900 rounded-lg px-4 py-3 font-mono text-sm flex items-center justify-between gap-3">
+      <div className="flex items-center gap-2 min-w-0">
+        <span className="text-gray-500 select-none flex-shrink-0">$</span>
+        <span className="text-green-400 truncate">{code}</span>
+      </div>
+      <CopyButton text={code} />
     </div>
   );
 }
@@ -106,60 +135,128 @@ function UsageTable() {
   );
 }
 
-export default function StepSection() {
+function ProgressBar({ done, total }: { done: number; total: number }) {
+  const pct = Math.round((done / total) * 100);
   return (
-    <div className="space-y-16">
-      {steps.map((step) => (
-        <div key={step.number} className="flex gap-6 md:gap-10">
-          {/* ステップ番号 */}
-          <div className="flex-shrink-0">
-            <div className="w-12 h-12 rounded-full bg-gray-900 text-white flex items-center justify-center font-bold text-lg">
-              {step.number}
+    <div className="mb-12">
+      <div className="flex items-center justify-between mb-2">
+        <span className="text-sm font-medium text-gray-700">
+          進捗：{done} / {total} ステップ完了
+        </span>
+        {done === total && (
+          <span className="text-sm font-bold text-green-600 animate-pulse">
+            🎉 全部できた！
+          </span>
+        )}
+      </div>
+      <div className="w-full bg-gray-200 rounded-full h-2.5">
+        <div
+          className="bg-green-500 h-2.5 rounded-full transition-all duration-500"
+          style={{ width: `${pct}%` }}
+        />
+      </div>
+    </div>
+  );
+}
+
+export default function StepSection() {
+  const [checked, setChecked] = useState<boolean[]>(() => Array(steps.length).fill(false));
+
+  useEffect(() => {
+    const saved = localStorage.getItem("ag-claude-steps");
+    if (saved) setChecked(JSON.parse(saved));
+  }, []);
+
+  const toggle = (i: number) => {
+    const next = checked.map((v, idx) => (idx === i ? !v : v));
+    setChecked(next);
+    localStorage.setItem("ag-claude-steps", JSON.stringify(next));
+  };
+
+  const doneCount = checked.filter(Boolean).length;
+
+  return (
+    <div>
+      <ProgressBar done={doneCount} total={steps.length} />
+
+      <div className="space-y-16">
+        {steps.map((step, i) => (
+          <div key={step.number} className="flex gap-6 md:gap-10">
+            {/* ステップ番号 */}
+            <div className="flex-shrink-0 flex flex-col items-center">
+              <div
+                className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-lg transition-colors ${
+                  checked[i]
+                    ? "bg-green-500 text-white"
+                    : "bg-gray-900 text-white"
+                }`}
+              >
+                {checked[i] ? "✓" : step.number}
+              </div>
+              {i < steps.length - 1 && (
+                <div className="w-0.5 bg-gray-200 flex-1 mt-2 min-h-8" />
+              )}
             </div>
-            {step.number < steps.length && (
-              <div className="w-0.5 bg-gray-200 mx-auto mt-2" style={{ height: "calc(100% - 3rem)" }} />
-            )}
+
+            {/* コンテンツ */}
+            <div className="flex-1 pb-8">
+              <div className="flex items-start justify-between gap-4 mb-3">
+                <h3
+                  className={`text-xl font-bold transition-colors ${
+                    checked[i] ? "text-green-700" : "text-gray-900"
+                  }`}
+                >
+                  {step.title}
+                </h3>
+                <button
+                  onClick={() => toggle(i)}
+                  className={`flex-shrink-0 text-xs px-3 py-1.5 rounded-full border font-medium transition-all ${
+                    checked[i]
+                      ? "bg-green-100 border-green-400 text-green-700"
+                      : "bg-white border-gray-300 text-gray-500 hover:border-gray-400"
+                  }`}
+                >
+                  {checked[i] ? "✅ できた！" : "できた！"}
+                </button>
+              </div>
+
+              <p className="text-gray-600 mb-4 leading-relaxed">{step.description}</p>
+
+              {step.code && (
+                <div className="mb-4">
+                  <CodeBlock code={step.code} />
+                </div>
+              )}
+
+              {step.number === 5 ? (
+                <div className="mb-4">
+                  <UsageTable />
+                </div>
+              ) : (
+                <div className="mb-4">
+                  <ImagePlaceholder label={step.imagelabel} height="h-56" />
+                </div>
+              )}
+
+              {step.detail && (
+                <div className="bg-blue-50 border-l-4 border-blue-400 px-4 py-3 rounded-r-lg mb-3">
+                  <p className="text-blue-800 text-sm leading-relaxed">
+                    <span className="font-bold">ポイント：</span>{step.detail}
+                  </p>
+                </div>
+              )}
+
+              {step.tip && (
+                <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3">
+                  <p className="text-gray-600 text-xs leading-relaxed">
+                    <span className="font-bold text-gray-700">💡 Tips：</span>{step.tip}
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
-
-          {/* コンテンツ */}
-          <div className="flex-1 pb-8">
-            <h3 className="text-xl font-bold text-gray-900 mb-3">{step.title}</h3>
-            <p className="text-gray-600 mb-4 leading-relaxed">{step.description}</p>
-
-            {step.code && (
-              <div className="mb-4">
-                <CodeBlock code={step.code} />
-              </div>
-            )}
-
-            {step.number === 5 ? (
-              <div className="mb-4">
-                <UsageTable />
-              </div>
-            ) : (
-              <div className="mb-4">
-                <ImagePlaceholder label={step.imagelabel} height="h-56" />
-              </div>
-            )}
-
-            {step.detail && (
-              <div className="bg-blue-50 border-l-4 border-blue-400 px-4 py-3 rounded-r-lg mb-3">
-                <p className="text-blue-800 text-sm leading-relaxed">
-                  <span className="font-bold">ポイント：</span>{step.detail}
-                </p>
-              </div>
-            )}
-
-            {step.tip && (
-              <div className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3">
-                <p className="text-gray-600 text-xs leading-relaxed">
-                  <span className="font-bold text-gray-700">💡 Tips：</span>{step.tip}
-                </p>
-              </div>
-            )}
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
