@@ -11,7 +11,7 @@ const flow = [
     icon: "🔗",
     title: "リポジトリのURLをClaudeに渡す",
     desc: "GitHubのリポジトリページを開いて、URLをそのままコピー。「ここにリポジトリ用意したので〇〇を作って」と一緒に貼るだけ。",
-    sub: "例：「https://github.com/yourname/my-intro.git ここにリポジトリ用意しました。簡単な自己紹介ページを作ってください」",
+    sub: "例：「https://github.com/otiek/my-intro.git ここにリポジトリ用意しました。簡単な自己紹介ページを作ってください」",
   },
   {
     step: "03",

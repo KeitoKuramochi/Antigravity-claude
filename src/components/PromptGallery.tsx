@@ -7,14 +7,14 @@ const prompts = [
     tag: "まず最初にこれ",
     color: "bg-blue-50 border-blue-200",
     tagColor: "bg-blue-100 text-blue-700",
-    text: "https://github.com/yourname/my-intro.git\n\nここにリポジトリ用意しました。簡単な自己紹介ページを作ってください。名前・好きなこと・SNSリンクを載せたシンプルなデザインでお願いします。",
+    text: "https://github.com/【あなたのGitHubユーザー名】/my-intro.git\n\nここにリポジトリ用意しました。簡単な自己紹介ページを作ってください。名前・好きなこと・SNSリンクを載せたシンプルなデザインでお願いします。",
     why: "GitHubのURLと「何を作りたいか」をセットで渡すのが基本の形。これだけでClaudeが勝手にコードを書いてGitHubにpushするところまでやってくれます。",
   },
   {
     tag: "もう少し詳しく頼む",
     color: "bg-purple-50 border-purple-200",
     tagColor: "bg-purple-100 text-purple-700",
-    text: "https://github.com/yourname/portfolio.git\n\nここにリポジトリ用意しました。ポートフォリオサイトを作ってください。\n\n・トップに名前と一言キャッチコピー\n・作ったものを3枚カード形式で紹介\n・お問い合わせはTwitterのリンクに飛ばすだけでOK\n・デザインは黒背景でかっこよく",
+    text: "https://github.com/【あなたのGitHubユーザー名】/portfolio.git\n\nここにリポジトリ用意しました。ポートフォリオサイトを作ってください。\n\n・トップに名前と一言キャッチコピー\n・作ったものを3枚カード形式で紹介\n・お問い合わせはTwitterのリンクに飛ばすだけでOK\n・デザインは黒背景でかっこよく",
     why: "箇条書きで「入れたい要素」を並べると、イメージ通りに仕上がりやすいです。デザインの雰囲気も一言添えるとなお◎",
   },
   {

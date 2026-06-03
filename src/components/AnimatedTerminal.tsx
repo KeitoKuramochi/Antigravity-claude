@@ -8,7 +8,7 @@ const lines = [
   { type: "output", text: "╭─────────────────────────────────────╮" },
   { type: "output", text: "│  Claude Code が起動しました！        │" },
   { type: "output", text: "╰─────────────────────────────────────╯" },
-  { type: "prompt", text: "> https://github.com/yourname/my-intro.git ここにリポジトリ用意しました。簡単な自己紹介ページを作ってください。" },
+  { type: "prompt", text: "> https://github.com/otiek/my-intro.git ここにリポジトリ用意しました。簡単な自己紹介ページを作ってください。" },
   { type: "output", text: "# リポジトリを確認しました。" },
   { type: "output", text: "# index.html を作成しています..." },
   { type: "output", text: "# GitHubにpushしました！" },
