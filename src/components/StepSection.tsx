@@ -48,10 +48,10 @@ const steps: StepProps[] = [
   },
   {
     number: 5,
-    title: "IDEチャットとの使い分け",
-    description: "どっちをいつ使うか、これで迷わない！",
+    title: "GeminiなどのAIとの使い分け",
+    description: "AntigravityのIDEで開けるGeminiなどとClaude Code、どっちをいつ使うか迷わない！",
     detail: "",
-    imagelabel: "IDEチャットとClaudeの使い分けイメージのスクショ",
+    imagelabel: "GeminiなどのオープンエージェントマネージャーAIとClaude Codeの使い分けイメージのスクショ",
   },
 ];
 
@@ -71,26 +71,37 @@ function UsageTable() {
         <thead>
           <tr className="bg-gray-100">
             <th className="text-left p-3 rounded-tl-lg font-semibold text-gray-600"></th>
-            <th className="text-left p-3 font-semibold text-gray-600">IDEのチャット</th>
-            <th className="text-left p-3 rounded-tr-lg font-semibold text-gray-600">Claude Code（ターミナル）</th>
+            <th className="text-left p-3 font-semibold text-gray-600">
+              <span className="block text-xs text-gray-400 mb-0.5">IDEから開く</span>
+              Gemini等のAI
+            </th>
+            <th className="text-left p-3 rounded-tr-lg font-semibold text-gray-600">
+              <span className="block text-xs text-green-500 mb-0.5">ターミナルから起動</span>
+              Claude Code
+            </th>
           </tr>
         </thead>
         <tbody>
           {[
-            ["コードの質問", "✅ 向いてる", "✅ 向いてる"],
-            ["ファイルを直接編集", "❌ できない", "✅ できる"],
+            ["コードについて質問する", "✅ できる", "✅ できる"],
+            ["プロジェクトのファイルを直接読む", "❌ できない", "✅ 自動で読んでくれる"],
+            ["ファイルを実際に書き換える", "❌ 提案だけ（自分でコピペが必要）", "✅ そのまま書いてくれる"],
             ["複数ファイルをまとめて修正", "❌ 難しい", "✅ 得意"],
-            ["「〇〇作って」と丸投げ", "△ 提案だけ", "✅ 実際に作ってくれる"],
-            ["気軽な質問", "✅ 速い", "✅ こちらも可"],
-          ].map(([feature, ide, claude], i) => (
+            ["「〇〇を作って」と丸投げ", "△ 手順を教えてくれる", "✅ 実際に作ってくれる"],
+            ["ターミナルでコマンドを実行", "❌ できない", "✅ できる（npm install等）"],
+            ["気軽にサクッと質問", "✅ 手軽", "✅ こちらも可"],
+          ].map(([feature, gemini, claude], i) => (
             <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
               <td className="p-3 font-medium text-gray-700">{feature}</td>
-              <td className="p-3 text-gray-600">{ide}</td>
-              <td className="p-3 text-gray-600">{claude}</td>
+              <td className="p-3 text-gray-500">{gemini}</td>
+              <td className="p-3 text-gray-700 font-medium">{claude}</td>
             </tr>
           ))}
         </tbody>
       </table>
+      <p className="text-xs text-gray-400 mt-3 text-center">
+        💡 Geminiは「相談役」、Claude Codeは「実際に手を動かしてくれる人」というイメージ！
+      </p>
     </div>
   );
 }

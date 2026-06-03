@@ -14,25 +14,25 @@ export default function ConfusionCard() {
       <div className="grid md:grid-cols-2 gap-4">
         <div className="bg-red-50 border border-red-200 rounded-xl p-4">
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-xl">❌</span>
-            <p className="font-bold text-red-800 text-sm">IDEのチャット機能</p>
+            <span className="text-xl">🤖</span>
+            <p className="font-bold text-red-800 text-sm">GeminiなどのオープンエージェントマネージャーAI</p>
           </div>
           <p className="text-red-700 text-xs leading-relaxed">
-            AntigravityのIDEに最初から付いているチャット。<br />
+            AntigravityのIDEから開けるGeminiなどのAI。<br />
             <strong>配布された Claude ではありません。</strong><br />
-            コードを書くときの補助AI（別物）です。
+            コードのアドバイスはもらえるけど、実際にファイルを触ってはくれない。
           </p>
         </div>
 
         <div className="bg-green-50 border border-green-200 rounded-xl p-4">
           <div className="flex items-center gap-2 mb-2">
             <span className="text-xl">✅</span>
-            <p className="font-bold text-green-800 text-sm">ターミナルから起動するClaude</p>
+            <p className="font-bold text-green-800 text-sm">ターミナルから起動するClaude Code</p>
           </div>
           <p className="text-green-700 text-xs leading-relaxed">
             ターミナルで <code className="bg-green-100 px-1 rounded text-xs">claude</code> と打って起動するやつ。<br />
             <strong>こちらが配布されたClaude Code！</strong><br />
-            ファイルを直接読んで、コードを書いてくれます。
+            プロジェクトのファイルを直接読んで、コードを書き換えてくれます。
           </p>
         </div>
       </div>
