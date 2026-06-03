@@ -3,43 +3,36 @@
 import { useEffect, useState } from "react";
 
 const lines = [
-  { type: "cmd", text: "cd my-project" },
-  { type: "output", text: "# プロジェクトフォルダに移動しました" },
+  { type: "cmd", text: "cd my-intro" },
   { type: "cmd", text: "claude" },
   { type: "output", text: "╭─────────────────────────────────────╮" },
   { type: "output", text: "│  Claude Code が起動しました！        │" },
   { type: "output", text: "╰─────────────────────────────────────╯" },
-  { type: "prompt", text: "> トップページのデザインを作って" },
-  { type: "output", text: "# 承知しました！index.html を作成します..." },
-  { type: "output", text: "# ✅ 完成しました！" },
+  { type: "prompt", text: "> https://github.com/yourname/my-intro.git ここにリポジトリ用意しました。簡単な自己紹介ページを作ってください。" },
+  { type: "output", text: "# リポジトリを確認しました。" },
+  { type: "output", text: "# index.html を作成しています..." },
+  { type: "output", text: "# GitHubにpushしました！" },
+  { type: "output", text: "# ✅ 完成！Vercelで公開されるまで少し待ってね" },
 ];
 
 export default function AnimatedTerminal() {
   const [visibleLines, setVisibleLines] = useState<number>(0);
   const [currentChar, setCurrentChar] = useState<number>(0);
-  const [isTyping, setIsTyping] = useState(false);
 
   useEffect(() => {
-    if (visibleLines >= lines.length) {
-      setTimeout(() => {
-        setVisibleLines(0);
-        setCurrentChar(0);
-      }, 3000);
-      return;
-    }
+    // 全行表示し終わったら止まる
+    if (visibleLines >= lines.length) return;
 
     const currentLine = lines[visibleLines];
     const isTypeableLine = currentLine.type === "cmd" || currentLine.type === "prompt";
 
     if (isTypeableLine && currentChar < currentLine.text.length) {
-      setIsTyping(true);
       const timer = setTimeout(() => {
         setCurrentChar((c) => c + 1);
-      }, 60);
+      }, 45);
       return () => clearTimeout(timer);
     } else {
-      setIsTyping(false);
-      const delay = isTypeableLine ? 400 : 80;
+      const delay = isTypeableLine ? 500 : 100;
       const timer = setTimeout(() => {
         setVisibleLines((v) => v + 1);
         setCurrentChar(0);

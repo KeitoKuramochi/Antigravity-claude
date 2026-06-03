@@ -70,9 +70,6 @@ export default function Home() {
             </p>
           </div>
           <AnimatedTerminal />
-          <p className="text-center text-gray-500 text-xs mt-4">
-            ※ 自動でアニメーションが繰り返されます
-          </p>
         </div>
       </section>
 

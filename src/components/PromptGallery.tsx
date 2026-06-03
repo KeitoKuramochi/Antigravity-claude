@@ -4,25 +4,25 @@ import { useState } from "react";
 
 const prompts = [
   {
-    tag: "はじめての一言",
+    tag: "まず最初にこれ",
     color: "bg-blue-50 border-blue-200",
     tagColor: "bg-blue-100 text-blue-700",
-    text: "このプロジェクトのファイル構成を教えて。どんな役割のファイルがあるか日本語で説明して。",
-    why: "最初にClaudeにプロジェクト全体を把握させると、その後の指示がスムーズになります。",
+    text: "https://github.com/yourname/my-intro.git\n\nここにリポジトリ用意しました。簡単な自己紹介ページを作ってください。名前・好きなこと・SNSリンクを載せたシンプルなデザインでお願いします。",
+    why: "GitHubのURLと「何を作りたいか」をセットで渡すのが基本の形。これだけでClaudeが勝手にコードを書いてGitHubにpushするところまでやってくれます。",
   },
   {
-    tag: "ページを作る",
+    tag: "もう少し詳しく頼む",
     color: "bg-purple-50 border-purple-200",
     tagColor: "bg-purple-100 text-purple-700",
-    text: "お問い合わせページを作って。名前・メール・メッセージを入力できるフォームにして、送信ボタンも付けて。デザインはシンプルで今のサイトに合わせて。",
-    why: "「何を作るか」「どんな要素が必要か」「デザインの方向性」を一緒に伝えると精度が上がります。",
+    text: "https://github.com/yourname/portfolio.git\n\nここにリポジトリ用意しました。ポートフォリオサイトを作ってください。\n\n・トップに名前と一言キャッチコピー\n・作ったものを3枚カード形式で紹介\n・お問い合わせはTwitterのリンクに飛ばすだけでOK\n・デザインは黒背景でかっこよく",
+    why: "箇条書きで「入れたい要素」を並べると、イメージ通りに仕上がりやすいです。デザインの雰囲気も一言添えるとなお◎",
   },
   {
     tag: "修正・直す",
     color: "bg-orange-50 border-orange-200",
     tagColor: "bg-orange-100 text-orange-700",
-    text: "ナビゲーションバーがスマホで崩れてる。直して。",
-    why: "短くてOK！Claudeが自分でファイルを見て原因を特定してくれます。",
+    text: "スマホで見たときにナビゲーションが崩れてる。直して。",
+    why: "短くてOK！GitHubにpush済みのコードをClaudeが自分で読んで原因を探してくれます。",
   },
   {
     tag: "エラーを直す",
@@ -35,7 +35,7 @@ const prompts = [
     tag: "デザイン変更",
     color: "bg-pink-50 border-pink-200",
     tagColor: "bg-pink-100 text-pink-700",
-    text: "トップページのボタンの色を青から緑に変えて。ホバーしたときに少し暗くなるようにして。",
+    text: "ボタンの色を青から緑に変えて。ホバーしたときに少し暗くなるようにして。",
     why: "具体的な色と動作を伝えると一発で思い通りになりやすいです。",
   },
   {
