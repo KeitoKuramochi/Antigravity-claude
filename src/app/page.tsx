@@ -2,6 +2,7 @@ import ConfusionCard from "@/components/ConfusionCard";
 import StepSection from "@/components/StepSection";
 import AnimatedTerminal from "@/components/AnimatedTerminal";
 import PromptGallery from "@/components/PromptGallery";
+import WorkflowSection from "@/components/WorkflowSection";
 
 export default function Home() {
   return (
@@ -53,6 +54,9 @@ export default function Home() {
       <div className="bg-gray-50 border-t border-gray-100">
         <PromptGallery />
       </div>
+
+      {/* GitHub → Claude → Vercel の全体フロー */}
+      <WorkflowSection />
 
       {/* アニメーションターミナル */}
       <section className="bg-gray-950 py-20 px-6">
