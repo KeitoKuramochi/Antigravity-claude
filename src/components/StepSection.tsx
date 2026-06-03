@@ -3,6 +3,11 @@
 import { useState, useEffect } from "react";
 import ImagePlaceholder from "./ImagePlaceholder";
 
+interface Shortcut {
+  os: string;
+  keys: string[];
+}
+
 interface StepProps {
   number: number;
   title: string;
@@ -10,6 +15,7 @@ interface StepProps {
   detail?: string;
   code?: string;
   tip?: string;
+  shortcuts?: Shortcut[];
   imagelabel: string;
   filename: string;
 }
@@ -26,10 +32,14 @@ const steps: StepProps[] = [
   },
   {
     number: 2,
-    title: "ターミナルを探して開く",
-    description: "画面の下の方にある「Terminal」または「ターミナル」タブをクリックします。黒い入力エリアが出てきたら成功です。",
-    tip: "見当たらない場合は上のメニューから「View」→「Terminal」を探してみてください。",
-    imagelabel: "Antigravityでターミナルタブを開いているスクショ",
+    title: "ターミナルを開く",
+    description: "キーボードショートカットで一発で開くのが一番早いです。または画面下の「Terminal」タブをクリックしても開けます。",
+    shortcuts: [
+      { os: "Mac", keys: ["Ctrl", "`"] },
+      { os: "Windows", keys: ["Ctrl", "`"] },
+    ],
+    tip: "ショートカットで開かない場合は、上のメニューから「View」→「Terminal」を探してみてください。",
+    imagelabel: "Antigravityでターミナルが開いているスクショ",
     filename: "step2.png",
   },
   {
@@ -71,6 +81,31 @@ const steps: StepProps[] = [
     filename: "step6.png",
   },
 ];
+
+function ShortcutDisplay({ shortcuts }: { shortcuts: Shortcut[] }) {
+  return (
+    <div className="mb-4 flex flex-col sm:flex-row gap-3">
+      {shortcuts.map((s) => (
+        <div key={s.os} className="flex items-center gap-2 bg-gray-100 rounded-xl px-4 py-3">
+          <span className="text-xs font-bold text-gray-500 w-16 flex-shrink-0">{s.os}</span>
+          <div className="flex items-center gap-1">
+            {s.keys.map((key, i) => (
+              <span key={i} className="flex items-center gap-1">
+                <kbd className="inline-flex items-center justify-center min-w-[2rem] h-8 px-2 bg-white border border-gray-300 border-b-[3px] rounded-md text-xs font-mono font-bold text-gray-700 shadow-sm">
+                  {key}
+                </kbd>
+                {i < s.keys.length - 1 && (
+                  <span className="text-gray-400 text-xs font-bold">+</span>
+                )}
+              </span>
+            ))}
+          </div>
+          <span className="text-xs text-gray-400 ml-1">を同時に押す</span>
+        </div>
+      ))}
+    </div>
+  );
+}
 
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
@@ -194,6 +229,8 @@ export default function StepSection() {
               </div>
 
               <p className="text-gray-600 mb-4 leading-relaxed">{step.description}</p>
+
+              {step.shortcuts && <ShortcutDisplay shortcuts={step.shortcuts} />}
 
               {step.code && (
                 <div className="mb-4">
