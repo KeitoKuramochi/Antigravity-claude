@@ -11,50 +11,64 @@ interface StepProps {
   code?: string;
   tip?: string;
   imagelabel: string;
+  filename: string;
 }
 
 const steps: StepProps[] = [
   {
     number: 1,
-    title: "Antigravityを開いてターミナルを見つける",
-    description: "AntigravityのIDEを開いたら、画面の下の方にある「ターミナル」タブをクリックします。",
-    detail: "ターミナルは、コンピューターにコマンド（命令）を直接打ち込める場所です。黒い画面が出てきたら成功！",
-    tip: "ターミナルが見当たらない場合は、上のメニューから「View」→「Terminal」を探してみてください。",
-    imagelabel: "AntigravityのIDEでターミナルタブをクリックしている画面のスクショ",
+    title: "Antigravityを開いてフォルダを用意する",
+    description: "Antigravityを起動して、作業したいフォルダを開きます。新しく始める場合は新規フォルダを作ってそこを開いてもOKです。",
+    detail: "フォルダを開くと左のサイドバーにファイル一覧が表示されます。ここがこれから作業する場所になります。",
+    tip: "すでにGitHubからクローンしたフォルダがある場合はそれを開けばOKです。",
+    imagelabel: "AntigravityでフォルダをOpenしているスクショ",
+    filename: "step1.png",
   },
   {
     number: 2,
-    title: "プロジェクトのフォルダに移動する",
-    description: "ターミナルに以下のコマンドを打ち込んで、作業したいフォルダに移動しましょう。",
-    code: "cd プロジェクトのフォルダ名",
-    detail: "「cd」は「change directory（場所を変える）」の略です。フォルダ名の部分は自分のプロジェクト名に変えてください。",
-    tip: "フォルダ名がわからないときは「ls」と打つと一覧が表示されます。",
-    imagelabel: "ターミナルに cd コマンドを打ち込んでいるスクショ",
+    title: "ターミナルを探して開く",
+    description: "画面の下の方にある「Terminal」または「ターミナル」タブをクリックします。黒い入力エリアが出てきたら成功です。",
+    tip: "見当たらない場合は上のメニューから「View」→「Terminal」を探してみてください。",
+    imagelabel: "Antigravityでターミナルタブを開いているスクショ",
+    filename: "step2.png",
   },
   {
     number: 3,
-    title: "「claude」コマンドで起動する",
-    description: "フォルダに移動できたら、いよいよClaudeを起動します！",
+    title: "「claude」と入力してEnterを押す",
+    description: "ターミナルに以下のコマンドを入力して、Enterキーを押します。",
     code: "claude",
-    detail: "Enterキーを押すと、Claude Codeが起動してメッセージが表示されます。これが「配布されたClaude」を使っている状態です！",
-    tip: "「command not found」と出た場合は、インストールが必要です。管理者に確認してみてください。",
-    imagelabel: "claude コマンドを打って起動した直後の画面スクショ",
+    detail: "Claude Codeが起動してロゴや文字が表示されます。これが「配布されたClaude」を使っている状態です！",
+    tip: "「command not found」と出たらインストールが必要です。管理者に確認してみてください。",
+    imagelabel: "claude と入力してEnterを押した直後の起動画面スクショ",
+    filename: "step3.png",
   },
   {
     number: 4,
-    title: "日本語で指示を出してみよう",
-    description: "「>」が表示されたら、日本語でやってほしいことを入力するだけ！",
-    code: "> トップページにボタンを追加して",
-    detail: "Claudeはプロジェクトのファイルを全部読んで理解した上で作業してくれます。「〇〇を修正して」「〇〇を作って」など、自然な言葉でOK！",
-    tip: "長い指示も大丈夫です。「〜〜のようなページを作って。デザインはシンプルにして、スマホでも見やすくして」みたいに詳しく書くほど、思い通りになります。",
-    imagelabel: "Claudeに日本語で指示を出して作業してもらっている画面スクショ",
+    title: "「シェアしますか？」を選ぶ",
+    description: "初回起動時に、使用データを実験に提供するかどうかの質問が出ます。どちらを選んでもClaudeは使えます。",
+    detail: "「シェアする」を選ぶと使用データがAnthropicの改善に使われます。「シェアしない」でも全く問題なく使えます。自分で選んでOKです。",
+    tip: "この画面が出ない場合は、すでに設定済みなので次のステップに進んでください。",
+    imagelabel: "「実験に協力しますか（シェアしますか）」のダイアログのスクショ",
+    filename: "step4.png",
   },
   {
     number: 5,
-    title: "GeminiなどのAIとの使い分け",
-    description: "AntigravityのIDEで開けるGeminiなどとClaude Code、どっちをいつ使うか迷わない！",
-    detail: "",
-    imagelabel: "GeminiなどのオープンエージェントマネージャーAIとClaude Codeの使い分けイメージのスクショ",
+    title: "プロンプト（指示）を入力する",
+    description: "「>」が表示されたら、日本語で指示を入力します。GitHubのURLと一緒に「何を作ってほしいか」を伝えましょう。",
+    code: "https://github.com/yourname/my-intro.git ここにリポジトリ用意しました。簡単な自己紹介ページを作ってください。",
+    detail: "ClaudeはGitHubのリポジトリを読み込んで、実際にコードを書いてpushするところまでやってくれます。",
+    tip: "「名前・好きなこと・SNSリンクを載せて」のように要素を伝えると、より思い通りになります。",
+    imagelabel: "プロンプト入力画面でURLと指示を入力しているスクショ",
+    filename: "step5.png",
+  },
+  {
+    number: 6,
+    title: "コマンドの確認が出たら選択する",
+    description: "Claudeがファイルの作成や変更をしようとすると、確認画面が出ることがあります。内容を見て選んでください。",
+    detail: "「Yes」で1回だけ許可、「No」でキャンセル、「今後全部Yes（Always allow）」にすると同じ種類の操作は次から確認なしで進みます。信頼できる指示なら「今後全部Yes」が楽です。",
+    tip: "何をしようとしているか内容が表示されるので、確認してから選びましょう。",
+    imagelabel: "コマンド確認ダイアログ（Yes/No/今後全部Yes）のスクショ",
+    filename: "step6.png",
   },
 ];
 
@@ -93,47 +107,6 @@ function CodeBlock({ code }: { code: string }) {
   );
 }
 
-function UsageTable() {
-  return (
-    <div className="overflow-x-auto">
-      <table className="w-full text-sm border-collapse">
-        <thead>
-          <tr className="bg-gray-100">
-            <th className="text-left p-3 rounded-tl-lg font-semibold text-gray-600"></th>
-            <th className="text-left p-3 font-semibold text-gray-600">
-              <span className="block text-xs text-gray-400 mb-0.5">IDEから開く</span>
-              Gemini等のAI
-            </th>
-            <th className="text-left p-3 rounded-tr-lg font-semibold text-gray-600">
-              <span className="block text-xs text-green-500 mb-0.5">ターミナルから起動</span>
-              Claude Code
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {[
-            ["コードについて質問する", "✅ できる", "✅ できる"],
-            ["プロジェクトのファイルを直接読む", "❌ できない", "✅ 自動で読んでくれる"],
-            ["ファイルを実際に書き換える", "❌ 提案だけ（自分でコピペが必要）", "✅ そのまま書いてくれる"],
-            ["複数ファイルをまとめて修正", "❌ 難しい", "✅ 得意"],
-            ["「〇〇を作って」と丸投げ", "△ 手順を教えてくれる", "✅ 実際に作ってくれる"],
-            ["ターミナルでコマンドを実行", "❌ できない", "✅ できる（npm install等）"],
-            ["気軽にサクッと質問", "✅ 手軽", "✅ こちらも可"],
-          ].map(([feature, gemini, claude], i) => (
-            <tr key={i} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-              <td className="p-3 font-medium text-gray-700">{feature}</td>
-              <td className="p-3 text-gray-500">{gemini}</td>
-              <td className="p-3 text-gray-700 font-medium">{claude}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <p className="text-xs text-gray-400 mt-3 text-center">
-        💡 Geminiは「相談役」、Claude Codeは「実際に手を動かしてくれる人」というイメージ！
-      </p>
-    </div>
-  );
-}
 
 function ProgressBar({ done, total }: { done: number; total: number }) {
   const pct = Math.round((done / total) * 100);
@@ -228,15 +201,9 @@ export default function StepSection() {
                 </div>
               )}
 
-              {step.number === 5 ? (
-                <div className="mb-4">
-                  <UsageTable />
-                </div>
-              ) : (
-                <div className="mb-4">
-                  <ImagePlaceholder label={step.imagelabel} height="h-56" />
-                </div>
-              )}
+              <div className="mb-4">
+                <ImagePlaceholder label={step.imagelabel} filename={step.filename} />
+              </div>
 
               {step.detail && (
                 <div className="bg-blue-50 border-l-4 border-blue-400 px-4 py-3 rounded-r-lg mb-3">
