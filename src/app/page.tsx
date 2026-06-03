@@ -1,65 +1,80 @@
-import Image from "next/image";
+import ConfusionCard from "@/components/ConfusionCard";
+import StepSection from "@/components/StepSection";
+import AnimatedTerminal from "@/components/AnimatedTerminal";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <main className="min-h-screen bg-white">
+      {/* Hero */}
+      <section className="bg-gray-950 text-white py-20 px-6">
+        <div className="max-w-3xl mx-auto text-center">
+          <p className="text-gray-400 text-sm font-mono mb-4 tracking-widest uppercase">
+            AntiGravity × Claude Code
+          </p>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+            Claude を<br />
+            <span className="text-green-400">ターミナルで</span>動かそう
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
+          <p className="text-gray-300 text-lg leading-relaxed max-w-xl mx-auto">
+            配布されたClaude Codeを実際に使うまでの全手順を、
+            超わかりやすく解説します。
+            <br />
+            <span className="text-gray-400 text-sm">（スクショ多め・はじめての方向け）</span>
+          </p>
+          <div className="mt-8">
             <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              href="#steps"
+              className="inline-block bg-green-500 hover:bg-green-400 text-gray-950 font-bold py-3 px-8 rounded-full transition-colors"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+              手順を見る →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* よくある疑問 */}
+      <section className="max-w-3xl mx-auto px-6 py-16">
+        <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">
+          まず、よくある疑問を解決！
+        </h2>
+        <ConfusionCard />
+      </section>
+
+      {/* ステップ */}
+      <section id="steps" className="max-w-3xl mx-auto px-6 py-8 pb-20">
+        <h2 className="text-2xl font-bold text-gray-900 mb-12 text-center">
+          5ステップで使えるようになる
+        </h2>
+        <StepSection />
+      </section>
+
+      {/* アニメーションターミナル */}
+      <section className="bg-gray-950 py-20 px-6">
+        <div className="max-w-2xl mx-auto">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl font-bold text-white mb-3">
+              実際はこんな感じ！
+            </h2>
+            <p className="text-gray-400 text-sm">
+              ターミナルでClaudeを使うと、こんなふうにコマンドと返答がやりとりされます
+            </p>
+          </div>
+          <AnimatedTerminal />
+          <p className="text-center text-gray-500 text-xs mt-4">
+            ※ 自動でアニメーションが繰り返されます
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-10 px-6 text-center border-t border-gray-100">
+        <p className="text-gray-400 text-sm">
+          このページはAntiGravity × Claude Codeの使い方を共有するために作りました
+        </p>
+        <p className="text-gray-300 text-xs mt-2">
+          わからないことがあればSlackで気軽に聞いてください！
+        </p>
+      </footer>
+    </main>
   );
 }
