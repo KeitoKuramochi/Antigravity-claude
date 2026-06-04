@@ -132,12 +132,16 @@ function CopyButton({ text }: { text: string }) {
 
 function CodeBlock({ code }: { code: string }) {
   return (
-    <div className="bg-gray-900 rounded-lg px-4 py-3 font-mono text-sm flex items-center justify-between gap-3">
-      <div className="flex items-center gap-2 min-w-0">
-        <span className="text-gray-500 select-none flex-shrink-0">$</span>
-        <span className="text-green-400 truncate">{code}</span>
+    <div className="bg-gray-900 rounded-lg px-4 py-3 font-mono text-sm overflow-hidden">
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex items-start gap-2 min-w-0 flex-1">
+          <span className="text-gray-500 select-none flex-shrink-0 mt-0.5">$</span>
+          <span className="text-green-400 break-all whitespace-pre-wrap">{code}</span>
+        </div>
+        <div className="flex-shrink-0 mt-0.5">
+          <CopyButton text={code} />
+        </div>
       </div>
-      <CopyButton text={code} />
     </div>
   );
 }
@@ -207,7 +211,7 @@ export default function StepSection() {
             </div>
 
             {/* コンテンツ */}
-            <div className="flex-1 pb-8">
+            <div className="flex-1 pb-8 min-w-0 overflow-hidden">
               <div className="flex items-start justify-between gap-4 mb-3">
                 <h3
                   className={`text-xl font-bold transition-colors ${
