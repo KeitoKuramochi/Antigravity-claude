@@ -18,8 +18,7 @@ export default function Home() {
             <span className="text-green-400">ターミナルで</span>動かそう
           </h1>
           <p className="text-gray-300 text-lg leading-relaxed max-w-xl mx-auto">
-            配布されたClaude Codeを実際に使うまでの全手順を、
-            超わかりやすく解説します。
+            配布されたClaude Codeを実際に使うまでの全手順を、解説します。
             <br />
             <span className="text-gray-400 text-sm">（スクショ多め・はじめての方向け）</span>
           </p>
@@ -45,7 +44,7 @@ export default function Home() {
       {/* ステップ */}
       <section id="steps" className="max-w-3xl mx-auto px-6 py-8 pb-20">
         <h2 className="text-2xl font-bold text-gray-900 mb-12 text-center">
-          5ステップで使えるようになる
+          6ステップで使えるようになる
         </h2>
         <StepSection />
       </section>
