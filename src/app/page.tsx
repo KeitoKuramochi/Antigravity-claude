@@ -3,6 +3,7 @@ import StepSection from "@/components/StepSection";
 import AnimatedTerminal from "@/components/AnimatedTerminal";
 import PromptGallery from "@/components/PromptGallery";
 import WorkflowSection from "@/components/WorkflowSection";
+import MakingOfSection from "@/components/MakingOfSection";
 
 export default function Home() {
   return (
@@ -72,20 +73,17 @@ export default function Home() {
         </div>
       </section>
 
+      {/* このページの制作過程 */}
+      <MakingOfSection />
+
       {/* Footer */}
       <footer className="py-10 px-6 text-center border-t border-gray-100">
         <p className="text-gray-400 text-sm">
           このページはAntiGravity × Claude Codeの使い方を共有するために作りました
         </p>
         <p className="text-gray-300 text-xs mt-2">
-          わからないことがあればDiscordで気軽に聞いてください！
+          わからないことがあればSlackで気軽に聞いてください！
         </p>
-        <a
-          href="/making"
-          className="inline-block mt-4 text-xs text-gray-400 hover:text-gray-600 underline underline-offset-2 transition-colors"
-        >
-          📖 このサイト自体がどうやって作られたか見る →
-        </a>
       </footer>
     </main>
   );
