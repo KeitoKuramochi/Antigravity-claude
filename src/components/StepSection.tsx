@@ -35,7 +35,7 @@ const steps: StepProps[] = [
     title: "ターミナルを開く",
     description: "キーボードショートカットで一発で開けます。または画面下の「Terminal」タブをクリックしても開けます。",
     shortcuts: [
-      { os: "Mac", keys: ["Shift", "Ctrl", "^"] },
+      { os: "Mac", keys: ["Ctrl", "Shift", "^"] },
       { os: "Windows", keys: ["Ctrl", "Shift", "@"] },
     ],
     tip: "ショートカットで開かない場合は「View」→「Terminal」メニューからも開けます。",
