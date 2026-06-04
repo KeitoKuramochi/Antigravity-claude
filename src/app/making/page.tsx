@@ -189,7 +189,7 @@ export default function MakingPage() {
             {[
               ["会話のターン数", `${steps.length}回`, "指示を出した回数"],
               ["コードの自作", "0行", "全部Claudeが書いた"],
-              ["かかった時間", "1セッション", "会話しながら完成"],
+              ["かかった時間", "20分ぐらい", "会話しながら完成"],
               ["デプロイ先", "Vercel", "GitHubと連携で自動公開"],
             ].map(([label, value, desc], i) => (
               <div key={i} className="flex items-center justify-between bg-gray-900 border border-gray-800 rounded-xl px-5 py-4">
