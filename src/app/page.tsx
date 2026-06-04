@@ -81,6 +81,12 @@ export default function Home() {
         <p className="text-gray-300 text-xs mt-2">
           わからないことがあればSlackで気軽に聞いてください！
         </p>
+        <a
+          href="/making"
+          className="inline-block mt-4 text-xs text-gray-400 hover:text-gray-600 underline underline-offset-2 transition-colors"
+        >
+          📖 このサイト自体がどうやって作られたか見る →
+        </a>
       </footer>
     </main>
   );
