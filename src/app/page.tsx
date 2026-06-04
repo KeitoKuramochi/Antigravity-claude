@@ -78,7 +78,7 @@ export default function Home() {
           このページはAntiGravity × Claude Codeの使い方を共有するために作りました
         </p>
         <p className="text-gray-300 text-xs mt-2">
-          わからないことがあればSlackで気軽に聞いてください！
+          わからないことがあればDiscordで気軽に聞いてください！
         </p>
         <a
           href="/making"
